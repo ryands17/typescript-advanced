@@ -17,7 +17,7 @@ class Stack<T> {
     return this.items[this.items.length - 1]
   }
 
-  length(): number {
+  depth(): number {
     return this.items.length
   }
 }
@@ -28,14 +28,25 @@ s.push('Led Zeppelin')
 s.push('Green Day')
 console.log(`
 Stack top: ${s.top()}
-Total items: ${s.length()}
+Total items: ${s.depth()}
 `)
 
 // using composition
-const Stackable = (initialValue = {}) => {
+type Stackable = {
+  push: (item: number) => void
+  pop: () => number | string
+  top: () => number
+  depth: () => number
+}
+
+type Clearable = Stackable & {
+  clearAll: () => void
+}
+
+const stackable = (stack = {}): Stackable => {
   const items: number[] = []
   return {
-    ...initialValue,
+    ...stack,
     push(item: number) {
       items.push(item)
     },
@@ -49,19 +60,30 @@ const Stackable = (initialValue = {}) => {
     top(): number {
       return items[items.length - 1]
     },
-    length(): number {
+    depth(): number {
       return items.length
     },
   }
 }
 
-const s1 = Stackable()
-s1.push(1)
-s1.push(2)
-s1.push(3)
-s1.push(4)
+const clearable = (stack: Stackable): Clearable => {
+  return {
+    ...stack,
+    clearAll() {
+      while (stack.depth()) {
+        stack.pop()
+      }
+    },
+  }
+}
+
+const stack = clearable(stackable())
+stack.push(1)
+stack.push(2)
+stack.push(3)
+stack.push(4)
 
 console.log(`
-Composed Stack top: ${s1.top()}
-Composed Stack total items: ${s1.length()}
+Composed Stack top: ${stack.top()}
+Composed Stack total items: ${stack.depth()}
 `)
