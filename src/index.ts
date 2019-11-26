@@ -3,4 +3,5 @@
 // import './utils/typeInference'
 // import './utils/redux/reducer'
 // import './utils/stack'
-import './utils/generics'
+// import './utils/generics'
+import './utils/currying'
