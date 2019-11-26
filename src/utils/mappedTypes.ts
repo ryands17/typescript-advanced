@@ -10,14 +10,14 @@ type ReadOnlyTodo = { readonly [K in keyof Todo]: Todo[K] }
 // enforce all the values to be optional
 type OptionalReadOnlyTodo = { readonly [K in keyof Todo]?: Todo[K] }
 
-interface User {
+interface IUser {
   name: string
   age: number
   profilePic?: string
 }
 
 // -? changes all the optional parameters to be required
-type ReadOnlyUser = { readonly [K in keyof User]-?: User[K] }
+type ReadOnlyUser = { readonly [K in keyof IUser]-?: IUser[K] }
 
 const todo1: ReadOnlyTodo = {
   id: 1,
