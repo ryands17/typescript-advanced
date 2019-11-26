@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && tsc",
-    "start": "nodemon"
+    "start": "tsnd --respawn --transpileOnly --no-notify ./src"
   },
   "keywords": [],
   "author": "Ryan Dsouza",
@@ -15,15 +15,13 @@
     "typescript": "^3.5.3"
   },
   "devDependencies": {
-    "nodemon": "^1.19.1",
     "prettier": "^1.18.2",
     "rimraf": "^3.0.0",
-    "ts-node": "^8.3.0"
+    "ts-node-dev": "^1.0.0-pre.44"
   },
   "prettier": {
     "semi": false,
     "singleQuote": true,
-    "trailingComma": "es5",
-    "printWidth": 90
+    "trailingComma": "es5"
   }
 }
