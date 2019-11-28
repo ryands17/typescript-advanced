@@ -1,4 +1,4 @@
-interface Todo {
+type Todo = {
   id: number
   text: string
   completed: boolean
@@ -10,7 +10,7 @@ type ReadOnlyTodo = { readonly [K in keyof Todo]: Todo[K] }
 // enforce all the values to be optional
 type OptionalReadOnlyTodo = { readonly [K in keyof Todo]?: Todo[K] }
 
-interface IUser {
+type SampleUser = {
   name: string
   age: number
   profilePic?: string
