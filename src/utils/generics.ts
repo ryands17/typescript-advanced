@@ -41,3 +41,5 @@ const getByParameter = <T, K extends keyof T>(
 }
 
 console.log(getByParameter(songs, 'name', 'Numb'))
+
+export {}

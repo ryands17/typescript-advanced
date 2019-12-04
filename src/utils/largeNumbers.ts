@@ -10,3 +10,5 @@ class Amount {
 const moneyIWishIHad = new Amount(1_000_000_00)
 
 console.log('amount', moneyIWishIHad.getAmount())
+
+export {}

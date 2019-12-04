@@ -81,3 +81,5 @@ type AddParams = Parameters<typeof add>
 
 // ConstructorParameters<T>: This lets us extract all parameter types of a constructor function type. It produces a tuple type with all the parameter types or the type never if T is not a function.
 type ClassParams = ConstructorParameters<typeof MyClass>
+
+export {}

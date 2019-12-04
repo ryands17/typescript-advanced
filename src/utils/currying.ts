@@ -8,3 +8,5 @@ const sum = ((a: number) => {
 }) as Sum
 
 console.log(`Sum: ${sum(1)(2)(3)()}`)
+
+export {}

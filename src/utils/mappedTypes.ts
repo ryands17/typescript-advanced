@@ -29,3 +29,5 @@ const todo2: OptionalReadOnlyTodo = {
   id: 1,
   text: 'Learn TS',
 }
+
+export {}

@@ -25,3 +25,5 @@ redirect({
 redirect({
   email: 'user@user.com',
 })
+
+export {}

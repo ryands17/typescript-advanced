@@ -6,4 +6,4 @@
 // import './utils/generics'
 // import './utils/currying'
 // import './utils/otherImportantTypes'
-import './utils/trampolines'
+import './utils/fp'
