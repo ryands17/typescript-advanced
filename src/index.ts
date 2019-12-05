@@ -6,4 +6,5 @@
 // import './utils/generics'
 // import './utils/currying'
 // import './utils/otherImportantTypes'
-import './utils/fp'
+// import './utils/fp'
+import './utils/transducers'
