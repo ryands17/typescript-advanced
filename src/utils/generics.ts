@@ -36,10 +36,25 @@ const getByParameter = <T, K extends keyof T>(
   array: T[],
   parameter: K,
   value: T[K]
-): T | undefined => {
+) => {
   return array.find(song => song[parameter] === value)
 }
 
 console.log(getByParameter(songs, 'name', 'Numb'))
+
+type Replace<T, K extends keyof T, Replacement> = Omit<T, K> &
+  { [P in K]: Replacement }
+
+type ISongNew = Replace<ISong, 'yearOfRelease', string>
+const newSomgs: ISongNew[] = [
+  {
+    id: 1,
+    name: 'Sham',
+    singer: 'Amit Trivedi',
+    yearOfRelease: '2010',
+  },
+]
+
+console.log(getByParameter(newSomgs, 'name', 'Sham'))
 
 export {}
