@@ -10,7 +10,7 @@ type ReadOnlyTodo = { readonly [K in keyof Todo]: Todo[K] }
 // enforce all the values to be optional
 type OptionalReadOnlyTodo = { readonly [K in keyof Todo]?: Todo[K] }
 
-type SampleUser = {
+type IUser = {
   name: string
   age: number
   profilePic?: string

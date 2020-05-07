@@ -2,23 +2,6 @@
   Typescript Utility Types 
 */
 
-// Record<T,K>: Constructs a type with a set of properties K of type T. Useful for object mapping.
-type IRoutes = {
-  name: string
-  path: string
-}
-
-const routes: Record<string, IRoutes> = {
-  home: {
-    name: 'Home',
-    path: '/',
-  },
-  about: {
-    name: 'About',
-    path: '/about',
-  },
-}
-
 // Pick<K,T>: Constructs a type by picking the set of properties K from T.
 // Omit: The opposite of Pick
 type IUser = {

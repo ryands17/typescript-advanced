@@ -11,7 +11,10 @@ const initialState: TodosState = {
   ],
 }
 
-const todosReducer = (state = initialState, action: ActionTypes): TodosState => {
+const todosReducer = (
+  state = initialState,
+  action: ActionTypes
+): TodosState => {
   switch (action.type) {
     case 'ADD_TODO': {
       const todos = [...state.todos]

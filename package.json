@@ -16,6 +16,8 @@
   },
   "devDependencies": {
     "@types/node": "^13.9.0",
+    "husky": ">=4",
+    "lint-staged": ">=10",
     "prettier": "^1.18.2",
     "rimraf": "^3.0.0",
     "ts-node-dev": "^1.0.0-pre.44"
@@ -24,5 +26,13 @@
     "semi": false,
     "singleQuote": true,
     "trailingComma": "es5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts}": "prettier --write"
   }
 }
