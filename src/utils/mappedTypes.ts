@@ -19,15 +19,13 @@ type IUser = {
 // -? changes all the optional parameters to be required
 type ReadOnlyUser = { readonly [K in keyof IUser]-?: IUser[K] }
 
-const todo1: ReadOnlyTodo = {
+export const todo1: ReadOnlyTodo = {
   id: 1,
   text: 'Learn TS',
   completed: false,
 }
 
-const todo2: OptionalReadOnlyTodo = {
+export const todo2: OptionalReadOnlyTodo = {
   id: 1,
   text: 'Learn TS',
 }
-
-export {}

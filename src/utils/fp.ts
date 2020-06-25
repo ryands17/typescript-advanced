@@ -1,5 +1,8 @@
 // trampolines: use to prevent a stack overflow for tail recursive functions.
-const trampoline = (fn: Function) => (...args) => {
+
+const trampoline = <T extends any[], U extends any>(fn: (...args: T) => U) => (
+  ...args: T
+) => {
   let result = fn(...args)
   while (typeof result === 'function') {
     result = result()

@@ -16,13 +16,16 @@ type IUser = {
 type ILocation = Pick<IUser['location'], 'lat' | 'lng'>
 type IUser2 = Omit<IUser, 'location'>
 
-const coords: ILocation = {
+const _coords: ILocation = {
   lat: 37.422,
   lng: 122.0841,
 }
 
 // Exclude<T, U>: Constructs a type by excluding from T all properties that are assignable to U
-type Exclude1 = Exclude<string | number | (() => void), Function>
+type Exclude1 = Exclude<
+  string | number | (() => void),
+  <T extends any[], U extends any>(...args: T) => U
+>
 
 // Extract<T, U>: Constructs a type by extracting from T all properties that are assignable to U (opposite of Exclude)
 type Extract1 = Extract<string | number | (() => void), string | number>

@@ -1,4 +1,6 @@
-const createConfig = <U>() => <T extends { [name: string]: U }>(config: T) => {
+const createConfig = <Type>() => <Config extends { [name: string]: Type }>(
+  config: Config
+) => {
   return config
 }
 

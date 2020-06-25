@@ -10,32 +10,32 @@ const songs: ISong[] = [
     id: 1,
     name: 'Boulevard of Broken Dreams',
     singer: 'Green Day',
-    yearOfRelease: 2003,
+    yearOfRelease: 2003
   },
   {
     id: 2,
     name: 'Numb',
     singer: 'Linkin Park',
-    yearOfRelease: 2003,
+    yearOfRelease: 2003
   },
   {
     id: 3,
     name: 'Summer of 69',
     singer: 'Bryan Adams',
-    yearOfRelease: 1984,
+    yearOfRelease: 1984
   },
   {
     id: 4,
     name: 'Country Roads',
     singer: 'John Denver',
-    yearOfRelease: 1971,
-  },
+    yearOfRelease: 1971
+  }
 ]
 
-const getByParameter = <T, K extends keyof T>(
-  array: T[],
-  parameter: K,
-  value: T[K]
+const getByParameter = <Type, Key extends keyof Type>(
+  array: Type[],
+  parameter: Key,
+  value: Type[Key]
 ) => {
   return array.find(song => song[parameter] === value)
 }
@@ -51,8 +51,8 @@ const newSomgs: ISongNew[] = [
     id: 1,
     name: 'Sham',
     singer: 'Amit Trivedi',
-    yearOfRelease: '2010',
-  },
+    yearOfRelease: '2010'
+  }
 ]
 
 console.log(getByParameter(newSomgs, 'name', 'Sham'))
