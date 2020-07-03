@@ -7,4 +7,5 @@
 // import './utils/currying'
 // import './utils/otherImportantTypes'
 // import './utils/fp'
-import './utils/transducers'
+// import './utils/transducers'
+import './utils/functions'
