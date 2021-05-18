@@ -1,8 +1,8 @@
 // trampolines: use to prevent a stack overflow for tail recursive functions.
 
-const trampoline = <T extends any[], U extends any>(fn: (...args: T) => U) => (
-  ...args: T
-) => {
+export const trampoline = <T extends any[], U extends any>(
+  fn: (...args: T) => U
+) => (...args: T) => {
   let result = fn(...args)
   while (typeof result === 'function') {
     result = result()
@@ -62,5 +62,3 @@ const addAll = (values: Array<() => number>) => {
 }
 
 console.log(`Sum: ${addAll(values)}`)
-
-export {}
