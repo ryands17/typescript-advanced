@@ -1,10 +1,10 @@
 {
   "name": "typescript-advanced-concepts",
   "version": "1.0.0",
-  "description": "Some Typescript examples",
+  "description": "Advanced Typescript examples",
   "main": "src/index.ts",
   "scripts": {
-    "dev": "tsnd --respawn --transpile-only --no-notify ./src/index.ts",
+    "dev": "tsnd --respawn --clear --transpile-only --no-notify ./src/index.ts",
     "clean": "rimraf dist",
     "build": "npm run clean && tsc"
   },

@@ -8,4 +8,5 @@
 // import './utils/otherImportantTypes'
 // import './utils/fp'
 // import './utils/transducers'
-import './utils/functions'
+// import './utils/functions'
+import './advanced/rust';
