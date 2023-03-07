@@ -1,3 +1,4 @@
+type Maybe<T> = T | null | undefined;
 type Some<T> = { type: 'some'; value: T };
 type None = { type: 'none' };
 type Option<T> = Some<T> | None;
@@ -31,7 +32,7 @@ const getUser = (id: number): User => {
   return { id, name: 'John' };
 };
 
-const getUserAsync = async (id: number): Promise<User | null | undefined> => {
+const getUserAsync = async (id: number): Promise<Maybe<User>> => {
   if (id === 0) return null;
   await sleep();
   return { id, name: 'John' };
@@ -54,26 +55,31 @@ export const unwrapOr = <T>(option: Option<T>, defaultValue: T): T => {
   }
 };
 
-export const optionWrapper = <T, U extends T>(fn: (value: T) => value is U) => {
-  return (value: T): Option<U> => {
-    try {
-      if (fn(value)) return Some(value);
-      return None;
-    } catch (error) {
-      return None;
-    }
-  };
+// export const optionWrapper = <T, U extends T>(fn: (value: T) => value is U) => {
+//   return (value: T): Option<U> => {
+//     try {
+//       if (fn(value)) return Some(value);
+//       return None;
+//     } catch (error) {
+//       return None;
+//     }
+//   };
+// };
+
+// export const createOption = optionWrapper(
+//   <T>(value: Maybe<T>): value is T =>
+//     value !== null && value !== undefined
+// );
+
+export const createOption = <T>(value: Maybe<T>): Option<T> => {
+  const fn = (value: Maybe<T>): value is T =>
+    value !== null && value !== undefined;
+
+  return fn(value) ? Some(value) : None;
 };
 
-export const createOption = optionWrapper(
-  <T>(value: T | null | undefined): value is T =>
-    value !== null && value !== undefined
-);
-
-export const strictOption = <T>(
-  value: Option<T | null | undefined>
-): Option<T> => {
-  const fn = (value: Option<T | null | undefined>): value is Option<T> =>
+export const strictOption = <T>(value: Option<Maybe<T>>): Option<T> => {
+  const fn = (value: Option<Maybe<T>>): value is Option<T> =>
     value.type === 'some' && value.value !== null && value.value !== undefined;
 
   return fn(value) ? value : None;
