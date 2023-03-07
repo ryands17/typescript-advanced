@@ -26,6 +26,6 @@
     "singleQuote": true
   },
   "lint-staged": {
-    "*.{ts}": "prettier --write"
+    "*.{ts,json}": "prettier --write"
   }
 }
