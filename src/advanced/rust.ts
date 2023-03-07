@@ -71,12 +71,12 @@ export const createOption = optionWrapper(
 );
 
 export const strictOption = <T>(
-  arg: Option<T | null | undefined>
+  value: Option<T | null | undefined>
 ): Option<T> => {
-  const fn = (arg: Option<T | null | undefined>): arg is Option<T> =>
-    arg.type === 'some' && arg.value !== null && arg.value !== undefined;
+  const fn = (value: Option<T | null | undefined>): value is Option<T> =>
+    value.type === 'some' && value.value !== null && value.value !== undefined;
 
-  return fn(arg) ? arg : None;
+  return fn(value) ? value : None;
 };
 
 const arr = [1, 2, 3];
