@@ -1,4 +1,4 @@
-// TODO: convert to ESM
+import * as api from './advanced/rust.js';
 // import './utils/largeNumbers'
 // import './utils/strictProperties'
 // import './utils/typeInference'
@@ -10,4 +10,5 @@
 // import './utils/fp'
 // import './utils/transducers'
 // import './utils/functions'
-import './advanced/rust';
+
+api.getValueAsync(Promise.resolve(0)).then(console.log);

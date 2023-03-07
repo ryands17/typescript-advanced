@@ -1,3 +1,5 @@
+import { F } from 'ts-toolbelt';
+
 type Maybe<T> = T | null | undefined;
 type Some<T> = { type: 'some'; value: T };
 type None = { type: 'none' };
@@ -42,20 +44,35 @@ function sleep(time = 1000) {
   return new Promise((resolve) => setTimeout(resolve, time));
 }
 
-// TODO: add unwrap for the result type
-export const unwrap = <T>(rawValue: Option<T>, errorMessage?: string): T => {
-  if (rawValue.type === 'none')
-    throw Error(errorMessage || 'Cannot unwrap None');
-  return rawValue.value;
-};
+export function unwrap<T>(
+  rawValue: Option<T> | Result<T>,
+  errorMessage?: string
+): T {
+  if (rawValue.type === 'some') {
+    return rawValue.value;
+  }
 
-export const unwrapOr = <T>(rawValue: Option<T>, defaultValue: T): T => {
+  if (rawValue.type === 'ok') {
+    return rawValue.value;
+  }
+
+  if (rawValue.type === 'err') {
+    throw rawValue.error;
+  }
+
+  throw new Error(errorMessage || 'Unable to unwrap');
+}
+
+export function unwrapOr<T>(
+  rawValue: Option<T> | Result<T>,
+  defaultValue: F.NoInfer<T>
+): T {
   try {
     return unwrap(rawValue);
   } catch (error) {
     return defaultValue;
   }
-};
+}
 
 // export const optionWrapper = <T, U extends T>(fn: (value: T) => value is U) => {
 //   return (value: T): Option<U> => {
@@ -97,15 +114,13 @@ const user2 = unwrapOr(
   { id: 1, name: 'John' }
 );
 
-(async () => {
-  const user = strictOption(await getValueAsync(getUserAsync(1)));
+const user = strictOption(await getValueAsync(getUserAsync(1)));
 
-  console.log('Using unwrap:', unwrap(user, 'Cannot find user'));
+console.log('Using unwrap:', unwrap(user, 'Cannot find user'));
 
-  if (user.type === 'some') {
-    console.log('Using a condition:', user.value.name);
-  }
-})();
+if (user.type === 'some') {
+  console.log('Using a condition:', user.value.name);
+}
 
 type Ok<T> = { type: 'ok'; value: T };
 type Err = { type: 'err'; error: unknown };
@@ -127,7 +142,5 @@ export const getResult = <Args extends unknown[], Res>(
   };
 };
 
-const user = getResult(getUser)(1);
-if (user.type === 'ok') {
-  console.log('Using the result type:', user.value.name);
-}
+const user3 = unwrapOr(getResult(getUser)(1), { id: 1, name: 'John' });
+console.log('Using unwrap on result:', user3);

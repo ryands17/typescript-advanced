@@ -1,5 +1,5 @@
-import { TodosState, ActionTypes } from './types'
-import { prettyPrint } from '../functions'
+import { TodosState, ActionTypes } from './types.js';
+import { prettyPrint } from '../functions.js';
 
 const initialState: TodosState = {
   todos: [
@@ -9,7 +9,7 @@ const initialState: TodosState = {
       completed: false,
     },
   ],
-}
+};
 
 const todosReducer = (
   state = initialState,
@@ -17,25 +17,25 @@ const todosReducer = (
 ): TodosState => {
   switch (action.type) {
     case 'ADD_TODO': {
-      const todos = [...state.todos]
-      todos.push({ id: Date.now(), text: action.todoText, completed: true })
+      const todos = [...state.todos];
+      todos.push({ id: Date.now(), text: action.todoText, completed: true });
       return {
         todos,
-      }
+      };
     }
 
     case 'TOGGLE_TODO': {
-      const todos = [...state.todos]
-      todos[action.index].completed = !todos[action.index].completed
+      const todos = [...state.todos];
+      todos[action.index].completed = !todos[action.index].completed;
       return {
         todos,
-      }
+      };
     }
 
     default:
-      return state
+      return state;
   }
-}
+};
 
 console.log(
   prettyPrint(
@@ -44,4 +44,4 @@ console.log(
       todoText: 'Learn Redux',
     })
   )
-)
+);
