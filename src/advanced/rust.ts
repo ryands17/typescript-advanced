@@ -96,3 +96,28 @@ const user2 = unwrapOr(
     console.log(user.value.name);
   }
 })();
+
+type Ok<T> = { type: 'ok'; value: T };
+type Err = { type: 'err'; error: unknown };
+
+type Result<T> = Ok<T> | Err;
+
+const Ok = <T>(value: T): Ok<T> => ({ type: 'ok', value });
+const Err = (error: unknown): Err => ({ type: 'err', error });
+
+export const getResult = <Args extends unknown[], Res>(
+  fn: (...args: Args) => Res
+) => {
+  return (...args: Args): Result<Res> => {
+    try {
+      return Ok(fn(...args));
+    } catch (error) {
+      return Err(error);
+    }
+  };
+};
+
+const user = getResult(getUser)(1);
+if (user.type === 'ok') {
+  console.log(user.value.name);
+}
