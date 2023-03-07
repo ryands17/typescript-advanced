@@ -42,6 +42,7 @@ function sleep(time = 1000) {
   return new Promise((resolve) => setTimeout(resolve, time));
 }
 
+// TODO: add unwrap for the result type
 export const unwrap = <T>(rawValue: Option<T>, errorMessage?: string): T => {
   if (rawValue.type === 'none')
     throw Error(errorMessage || 'Cannot unwrap None');
